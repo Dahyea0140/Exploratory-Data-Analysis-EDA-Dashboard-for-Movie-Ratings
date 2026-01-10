@@ -46,13 +46,20 @@ def load_data():
 
 top_rated = load_data()
 
-
-st.write(
-    "Data Loaded!",
-    top_rated.shape[0],
-    "ratings from",
-    top_rated["title"].nunique(),
-    "movies",
+min_ratings = st.slider(
+    "Minimum number of ratings",
+    1,
+    500,
+    100,
+    key="min_ratings",
+    help="Select the minimum number of ratings a movie must have to be considered.",
 )
 
-st.dataframe(top_rated.drop(columns=["movieId"]).head(10), hide_index=True)
+
+filtered = top_rated[top_rated["num_ratings"] >= min_ratings]
+
+top_movies = filtered.sort_values(by="avg_rating", ascending=False).head(10)
+
+st.dataframe(
+    top_movies.drop(columns=["movieId"]), use_container_width=True, hide_index=True
+)
