@@ -75,7 +75,15 @@ st.dataframe(
 
 st.write("### Top 10 Movies Bar Chart")
 fig, ax = plt.subplots(figsize=(10, 7))
-ax.barh(top_movies["title"][::-1], top_movies["avg_rating"][::-1], color="skyblue")
+colors = plt.cm.viridis(top_movies["avg_rating"] / top_movies["avg_rating"].max())
+ax.barh(top_movies["title"][::-1], top_movies["avg_rating"][::-1], color=colors)
 ax.set_xlabel("Average Rating")
 ax.set_title("Top 10 Movies")
 st.pyplot(fig)
+
+# Highlight the best movie``
+if not top_movies.empty:
+    best_movie = top_movies.iloc[0]
+    st.write(
+        f"### 🎬 The highest rated movie is **{best_movie['title']}** with a rating of **{best_movie['avg_rating']}**"
+    )
