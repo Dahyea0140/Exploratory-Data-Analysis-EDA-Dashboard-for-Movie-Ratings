@@ -1,153 +1,134 @@
-Summary
-=======
+🎬 Exploratory Data Analysis (EDA) Dashboard for Movie Ratings
 
-This dataset (ml-latest-small) describes 5-star rating and free-text tagging activity from [MovieLens](http://movielens.org), a movie recommendation service. It contains 100836 ratings and 3683 tag applications across 9742 movies. These data were created by 610 users between March 29, 1996 and September 24, 2018. This dataset was generated on September 26, 2018.
+An interactive Streamlit dashboard that performs exploratory data analysis on the MovieLens movie ratings dataset.
+The application helps users explore top-rated movies based on reliable average ratings and visualize insights from real-world data.
 
-Users were selected at random for inclusion. All selected users had rated at least 20 movies. No demographic information is included. Each user is represented by an id, and no other information is provided.
+📌 Project Overview
 
-The data are contained in the files `links.csv`, `movies.csv`, `ratings.csv` and `tags.csv`. More details about the contents and use of all these files follows.
+This project focuses on analyzing movie ratings data and presenting insights through an interactive web dashboard.
+The dashboard computes average ratings, filters movies based on minimum number of ratings, and displays the top-rated movies in both tabular and visual formats.
 
-This is a *development* dataset. As such, it may change over time and is not an appropriate dataset for shared research results. See available *benchmark* datasets if that is your intent.
+The goal of this project is to demonstrate:
 
-This and other GroupLens data sets are publicly available for download at <http://grouplens.org/datasets/>.
+Data cleaning and preprocessing
 
+Aggregation and statistical analysis
 
-Usage License
-=============
+Data visualization
 
-Neither the University of Minnesota nor any of the researchers involved can guarantee the correctness of the data, its suitability for any particular purpose, or the validity of results based on the use of the data set. The data set may be used for any research purposes under the following conditions:
+Building interactive data applications using Streamlit
 
-* The user may not state or imply any endorsement from the University of Minnesota or the GroupLens Research Group.
-* The user must acknowledge the use of the data set in publications resulting from the use of the data set (see below for citation information).
-* The user may redistribute the data set, including transformations, so long as it is distributed under these same license conditions.
-* The user may not use this information for any commercial or revenue-bearing purposes without first obtaining permission from a faculty member of the GroupLens Research Project at the University of Minnesota.
-* The executable software scripts are provided "as is" without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of them is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction.
+🚀 Features
 
-In no event shall the University of Minnesota, its affiliates or employees be liable to you for any damages arising out of the use or inability to use these programs (including but not limited to loss of data or data being rendered inaccurate).
+Load and clean MovieLens datasets (movies.csv, ratings.csv)
 
-If you have any further questions or comments, please email <grouplens-info@umn.edu>
+Remove unnecessary index (Unnamed) columns
 
+Merge movie metadata with user ratings
 
-Citation
-========
+Calculate:
 
-To acknowledge use of the dataset in publications, please cite the following paper:
+Average rating per movie
 
-> F. Maxwell Harper and Joseph A. Konstan. 2015. The MovieLens Datasets: History and Context. ACM Transactions on Interactive Intelligent Systems (TiiS) 5, 4: 19:1–19:19. <https://doi.org/10.1145/2827872>
+Total number of ratings per movie
 
+Filter movies based on minimum rating count for reliability
 
-Further Information About GroupLens
-===================================
+Display:
 
-GroupLens is a research group in the Department of Computer Science and Engineering at the University of Minnesota. Since its inception in 1992, GroupLens's research projects have explored a variety of fields including:
+Top-rated movies table
 
-* recommender systems
-* online communities
-* mobile and ubiquitious technologies
-* digital libraries
-* local geographic information systems
+Horizontal bar chart of top 10 movies
 
-GroupLens Research operates a movie recommender based on collaborative filtering, MovieLens, which is the source of these data. We encourage you to visit <http://movielens.org> to try it out! If you have exciting ideas for experimental work to conduct on MovieLens, send us an email at <grouplens-info@cs.umn.edu> - we are always interested in working with external collaborators.
+Caching for improved performance
 
+🛠️ Tech Stack
 
-Content and Use of Files
-========================
+Python
 
-Formatting and Encoding
------------------------
+pandas – data manipulation and aggregation
 
-The dataset files are written as [comma-separated values](http://en.wikipedia.org/wiki/Comma-separated_values) files with a single header row. Columns that contain commas (`,`) are escaped using double-quotes (`"`). These files are encoded as UTF-8. If accented characters in movie titles or tag values (e.g. Misérables, Les (1995)) display incorrectly, make sure that any program reading the data, such as a text editor, terminal, or script, is configured for UTF-8.
+matplotlib – data visualization
 
+Streamlit – interactive dashboard framework
 
-User Ids
---------
+📊 Dataset
 
-MovieLens users were selected at random for inclusion. Their ids have been anonymized. User ids are consistent between `ratings.csv` and `tags.csv` (i.e., the same id refers to the same user across the two files).
+The project uses the MovieLens dataset, a widely used dataset for recommender systems and data analysis.
 
+movies.csv – movie metadata (title, genres)
 
-Movie Ids
----------
+ratings.csv – user ratings
 
-Only movies with at least one rating or tag are included in the dataset. These movie ids are consistent with those used on the MovieLens web site (e.g., id `1` corresponds to the URL <https://movielens.org/movies/1>). Movie ids are consistent between `ratings.csv`, `tags.csv`, `movies.csv`, and `links.csv` (i.e., the same id refers to the same movie across these four data files).
+Dataset source:
+https://grouplens.org/datasets/movielens/
 
+📂 Project Structure
+Exploratory-Data-Analysis-EDA-Dashboard-for-Movie-Ratings/
+│
+├── app.py               # Main Streamlit application
+├── movies.csv           # Movie metadata
+├── ratings.csv          # Ratings data
+├── requirements.txt     # Python dependencies
+└── README.md            # Project documentation
 
-Ratings Data File Structure (ratings.csv)
------------------------------------------
+▶️ How to Run the App
 
-All ratings are contained in the file `ratings.csv`. Each line of this file after the header row represents one rating of one movie by one user, and has the following format:
+Clone the repository:
 
-    userId,movieId,rating,timestamp
-
-The lines within this file are ordered first by userId, then, within user, by movieId.
-
-Ratings are made on a 5-star scale, with half-star increments (0.5 stars - 5.0 stars).
-
-Timestamps represent seconds since midnight Coordinated Universal Time (UTC) of January 1, 1970.
+git clone https://github.com/Dahyea0140/Exploratory-Data-Analysis-EDA-Dashboard-for-Movie-Ratings.git
 
 
-Tags Data File Structure (tags.csv)
------------------------------------
+Navigate to the project directory:
 
-All tags are contained in the file `tags.csv`. Each line of this file after the header row represents one tag applied to one movie by one user, and has the following format:
-
-    userId,movieId,tag,timestamp
-
-The lines within this file are ordered first by userId, then, within user, by movieId.
-
-Tags are user-generated metadata about movies. Each tag is typically a single word or short phrase. The meaning, value, and purpose of a particular tag is determined by each user.
-
-Timestamps represent seconds since midnight Coordinated Universal Time (UTC) of January 1, 1970.
+cd Exploratory-Data-Analysis-EDA-Dashboard-for-Movie-Ratings
 
 
-Movies Data File Structure (movies.csv)
----------------------------------------
+Install dependencies:
 
-Movie information is contained in the file `movies.csv`. Each line of this file after the header row represents one movie, and has the following format:
-
-    movieId,title,genres
-
-Movie titles are entered manually or imported from <https://www.themoviedb.org/>, and include the year of release in parentheses. Errors and inconsistencies may exist in these titles.
-
-Genres are a pipe-separated list, and are selected from the following:
-
-* Action
-* Adventure
-* Animation
-* Children's
-* Comedy
-* Crime
-* Documentary
-* Drama
-* Fantasy
-* Film-Noir
-* Horror
-* Musical
-* Mystery
-* Romance
-* Sci-Fi
-* Thriller
-* War
-* Western
-* (no genres listed)
+pip install -r requirements.txt
 
 
-Links Data File Structure (links.csv)
----------------------------------------
+Run the Streamlit app:
 
-Identifiers that can be used to link to other sources of movie data are contained in the file `links.csv`. Each line of this file after the header row represents one movie, and has the following format:
+streamlit run app.py
 
-    movieId,imdbId,tmdbId
+📈 Example Insight
 
-movieId is an identifier for movies used by <https://movielens.org>. E.g., the movie Toy Story has the link <https://movielens.org/movies/1>.
+The dashboard highlights movies that have:
 
-imdbId is an identifier for movies used by <http://www.imdb.com>. E.g., the movie Toy Story has the link <http://www.imdb.com/title/tt0114709/>.
+High average ratings
 
-tmdbId is an identifier for movies used by <https://www.themoviedb.org>. E.g., the movie Toy Story has the link <https://www.themoviedb.org/movie/862>.
+A sufficient number of ratings (to avoid bias from small samples)
 
-Use of the resources listed above is subject to the terms of each provider.
+This ensures that rankings are statistically meaningful, not just highly rated by a few users.
 
+🧠 What I Learned
 
-Cross-Validation
-----------------
+Handling real-world datasets with inconsistent indices
 
-Prior versions of the MovieLens dataset included either pre-computed cross-folds or scripts to perform this computation. We no longer bundle either of these features with the dataset, since most modern toolkits provide this as a built-in feature. If you wish to learn about standard approaches to cross-fold computation in the context of recommender systems evaluation, see [LensKit](http://lenskit.org) for tools, documentation, and open-source code examples.
+Difference between DataFrame index vs columns
+
+Grouping and aggregating data using pandas
+
+Importance of filtering data for reliability
+
+Building and deploying interactive dashboards
+
+Visualizing ranked data effectively using bar charts
+
+🔮 Future Improvements
+
+Add genre-based filtering
+
+Add rating distribution visualizations
+
+Include time-based rating trends
+
+Add user-controlled sliders for minimum rating count
+
+Deploy the app on Streamlit Cloud
+
+📬 Contact
+
+If you have suggestions or feedback, feel free to connect!
